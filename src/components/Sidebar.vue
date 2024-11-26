@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const widgets = [
-  { id: 1, name: 'Text' },
-  { id: 2, name: 'Image' },
-  { id: 3, name: 'Button' },
+  { id: 1, name: 'Text', type: 'text', editable: true },
+  { id: 2, name: 'Image', type: 'image', editable: false },
+  { id: 3, name: 'Button', type: 'button', editable: true },
+  { id: 4, name: 'Columns', type: 'columns', editable: false, columns: [[], []] },
 ]
 </script>
 
@@ -14,7 +15,7 @@ const widgets = [
         v-for="widget in widgets"
         :key="widget.id"
         draggable="true"
-        @dragstart="(event) => event.dataTransfer?.setData('text/plain', widget.name)"
+        @dragstart="(event) => event.dataTransfer?.setData('widget', JSON.stringify(widget))"
       >
         {{ widget.name }}
       </li>
